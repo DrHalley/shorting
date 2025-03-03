@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function GET(
   req: Request,
-  { params }: { params: { shortUrl: string } }
+  { params }: { params: Promise<{ shortUrl: string }> }
 ) {
   const { shortUrl } = await params;
   const link = await prisma.link.findUnique({ where: { shortUrl } });
