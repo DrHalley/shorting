@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql" // Veritabanına göre değiştir
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  links     Link[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Link {
+  id        String   @id @default(uuid())
+  original  String
+  shortUrl  String   @unique
+  userId    String?  // Eğer kullanıcıya bağlıysa
+  user      User?    @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+}
