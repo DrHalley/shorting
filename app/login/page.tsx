@@ -2,13 +2,12 @@
 
 import { useState } from "react";
 import { signIn } from "next-auth/react"; // next-auth içinden import et
-import { useRouter } from "next/navigation";
+import { NextResponse } from "next/server";
 
 export default function SignIn() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
-  const router = useRouter();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -22,7 +21,7 @@ export default function SignIn() {
     if (result?.error) {
       setError("Invalid credentials. Please try again.");
     } else {
-      router.push("/dashboard"); // Başarılı girişte yönlendirme yap
+      NextResponse.redirect("/dashboard"); // Başarılı girişte yönlendirme yap
     }
   };
 

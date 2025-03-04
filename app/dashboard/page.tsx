@@ -9,15 +9,17 @@ export default function DashboardPage() {
 
   const [url, setUrl] = useState("");
   const [responseMessage, setResponseMessage] = useState("");
+  if (status === "loading") {
+    return <div>loading</div>;
+  }
+  if (!session) {
+    router.push("/login");
+    return;
+  }
+  console.log(session);
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (status === "loading") {
-      return <div>loading</div>;
-    }
-    if (!session) {
-      router.push("/login");
-      return;
-    }
+
     const response = await fetch("/api/url/create", {
       method: "POST",
       headers: {
