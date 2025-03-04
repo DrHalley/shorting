@@ -21,7 +21,7 @@ export default function SignIn() {
     if (result?.error) {
       setError("Invalid credentials. Please try again.");
     } else {
-      NextResponse.redirect("/dashboard"); // Başarılı girişte yönlendirme yap
+      NextResponse.redirect("https://shorting-alpha.vercel.app/dashboard"); // Başarılı girişte yönlendirme yap
     }
   };
 
