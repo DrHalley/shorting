@@ -2,6 +2,8 @@
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import Navbar from "@/components/navbar";
 
 export default function DashboardPage() {
   const { data: session, status } = useSession();
@@ -32,13 +34,22 @@ export default function DashboardPage() {
   };
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Link
-          <input value={url} onChange={(event) => setUrl(event.target.value)} />
-        </label>
-        <button type="submit">Short the Link</button>
-        {responseMessage}
+      <Navbar />
+      <form onSubmit={handleSubmit} className="pt-5">
+        <div className="flex justify-center">
+          <label>
+            Link:{" "}
+            <input
+              className=" border-black border-2"
+              value={url}
+              onChange={(event) => setUrl(event.target.value)}
+            />
+          </label>
+        </div>
+        <div className="flex justify-center pt-5">
+          <Button type="submit">Short the Link</Button>
+        </div>
+        <p className="text-center pt-5">{responseMessage}</p>
       </form>
     </div>
   );

@@ -1,4 +1,6 @@
 "use client";
+import Navbar from "@/components/navbar";
+import Link from "next/link";
 import { useState } from "react"; // Server action'u içe aktar
 
 export default function SignIn() {
@@ -30,29 +32,58 @@ export default function SignIn() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Email
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-          />
-        </label>
-        {error}
-        <label>
-          Password
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </label>
-        <button type="submit">Sign In</button>
-      </form>
+    <div className="flex-col">
+      <Navbar />
+      <div className="flex justify-center pt-30 ">
+        <form
+          onSubmit={handleSubmit}
+          className="flex-col w-80 h-50 pt-5p py-5 justify-center shadow-2xl border-2 rounded-2xl"
+        >
+          <div className="pb-1">
+            <label>
+              <div>
+                <p className="text-sm">Email</p>
+              </div>
+
+              <input
+                type="email"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                className="border-black border-2 rounded-2xl focus:outline-0"
+              />
+            </label>
+          </div>
+
+          <div className="pb-5">
+            <label>
+              <div>
+                <p className="text-sm">Password</p>
+              </div>
+              <input
+                type="password"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                className="border-black border-2 rounded-2xl focus:outline-0"
+              />
+            </label>
+          </div>
+          <div className="flex justify-center">
+            <button type="submit">Register</button>
+          </div>
+        </form>
+      </div>
+      <div className="pt-5">
+        <p className="text-center">
+          Already have an account?{" "}
+          <Link href="/login" className=" underline text-blue-400">
+            {" "}
+            Here
+          </Link>{" "}
+          create one
+        </p>
+      </div>
+
+      {error && <p style={{ color: "red" }}>{error}</p>}
     </div>
   );
 }
