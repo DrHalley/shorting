@@ -14,6 +14,6 @@ export async function POST(req: Request) {
     },
   });
   return NextResponse.json({
-    shortUrl: `https://localhost:3000/${newLink.shortUrl}`,
+    shortUrl: `https://shorting-alpha.vercel.app/${newLink.shortUrl}`,
   });
 }
