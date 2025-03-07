@@ -5,13 +5,14 @@ import { signIn } from "next-auth/react"; // next-auth içinden import et
 
 import Navbar from "@/components/navbar";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function SignIn() {
+  const route = useRouter();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
-  const route = useRouter();
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
