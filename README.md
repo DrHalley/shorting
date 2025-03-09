@@ -13,9 +13,6 @@ Shorting is a modern URL shortening service that allows you to shorten long URLs
 2️⃣ The system will generate a shortened link for you.  
 3️⃣ Copy and share the shortened link.
 
-## 🖼️ Sample Screenshot
-> 🖼️ You can add a screenshot here
-
 ## 📌 Technologies Used
 - **Next.js** - A modern React-based framework.
 - **Prisma** - ORM and database management.
