@@ -1,8 +1,9 @@
-import type { NextAuthConfig } from "next-auth";
+import type { NextAuthConfig, } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { prisma } from "./prisma";
 import bcrypt from "bcryptjs";
 import { ZodError } from "zod";
+
 
 // Notice this is only an object, not a full Auth.js instance
 export default {
@@ -30,6 +31,7 @@ export default {
           // logic to verify if the user exists
           user = await prisma.user.findUnique({
             where: { email: credentials.email },
+            include: {links: true}
           });
 
           if (!user) {
@@ -39,6 +41,7 @@ export default {
           }
           if (!(await bcrypt.compare(credentials.password, user.password))) {
             return null;
+            
           }
 
           // return user object with their profile data
